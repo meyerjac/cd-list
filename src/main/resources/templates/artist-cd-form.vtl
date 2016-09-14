@@ -1,0 +1,11 @@
+<h1>Add a CD to $artist.getName()</h1>
+
+<form action="/artist/$artist.getId()" method="post">
+  <input name="artistId" type="hidden" value="$artist.getId()">
+
+  <div class="form-group">
+    <label for="CD">CD name</label>
+    <input id="CD" name="CD" type="text" class="form-control">
+  </div>
+
+  <button type="submit" class="btn btn-success">Add CD</button>

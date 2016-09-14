@@ -1,17 +1,11 @@
-<h1>Please Enter a CD you own.</h1>
-#if ($cds)
+<h1>List of Artist</h1>
+#if ($artists)
   <ul>
-    #foreach ($cd in $cds)
-    <li>$cd.getName()</li>
+    #foreach ($artist in $artists)
+    <li><a href="artist/$artist.getId()">$artist.getName()</a></li>
     #end
   </ul>
 #else
-  <p>No CD</p>
+  <p>No Artist</p>
 #end
-<form action="/cd" method="post">
-  <div class='form-group'>
-    <label for='user-cd'>New cd:</label>
-    <input id='user-cd' name='user-cd' class='form-control' type='text'>
-  </div>
-  <button type='submit' class='btn btn-success'>Submit</button>
-</form>
+<a href="/artist/new">Add New Artist</a>

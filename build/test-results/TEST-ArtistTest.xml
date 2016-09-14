@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ArtistTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2016-09-14T23:15:32" hostname="epicodus-3.local" time="0.002">
+  <properties/>
+  <testcase name="addCD_addsCDsToList_true" classname="ArtistTest" time="0.001"/>
+  <testcase name="Artist_getName" classname="ArtistTest" time="0.001"/>
+  <testcase name="getCDs_initiallyReturnsEmptyList_ArrayList" classname="ArtistTest" time="0.0"/>
+  <testcase name="clear_emptiesAllArtistsFromList_0" classname="ArtistTest" time="0.0"/>
+  <testcase name="Artist_instantiatesNewArtist_true" classname="ArtistTest" time="0.0"/>
+  <testcase name="find_returnsArtistWithSameId_secondCategory" classname="ArtistTest" time="0.0"/>
+  <testcase name="getId_ArtistsInstantiateWithAnId_1" classname="ArtistTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

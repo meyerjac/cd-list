@@ -26,4 +26,31 @@ public class CdTest {
     newCD.add(cdData);
     Collections.sort(newCD, CD.cdSort);
   }
+  @Test
+  public void all_returnsAllInstancesOfCD_true() {
+    CD firstCD = new CD("sky is the limit");
+    CD secondCD = new CD("yellowtown");
+    assertEquals(true, CD.all().contains(firstCD));
+    assertEquals(true, CD.all().contains(secondCD));
+  }
+
+  @Test
+  public void clear_emptiesAllCDFromArrayList_0() {
+    CD myCD = new CD("sky is the limit");
+    CD.clear();
+    assertEquals(CD.all().size(), 0);
+  }
+
+  @Test
+  public void getId_CDInstantiateWithAnID_1() {
+    CD.clear();  // Remember, the test will fail without this line! We need to empty leftover Tasks from previous tests!
+    CD myCD = new CD("sky is the limit");
+    assertEquals(1, myCD.getId());
+  }
+
+  public void find_returnsCDWithSameId_secondTask() {
+    CD firstCD = new CD("sky is the limit");
+    CD secondCD = new CD("yellowtown");
+    assertEquals(CD.find(secondCD.getId()), secondCD);
+   }
 }

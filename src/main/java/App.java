@@ -13,27 +13,52 @@ public class App {
 
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      model.put("cds", request.session().attribute("cds"));
+      model.put("artists", Artist.all());
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    post("/cd", (request, response) -> {
+    post("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-
-      ArrayList<CD> cds = request.session().attribute("cds");
-      if (cds == null) {
-        cds = new ArrayList<CD>();
-        request.session().attribute("cds", cds);
-      }
-
-      String name = request.queryParams("user-cd");
-      CD newCD= new CD(name);
-      cds.add(newCD);
-      Collections.sort(cds, CD.cdSort);
-
-      model.put("template", "templates/success.vtl");
+      String name = request.queryParams("user-artist");
+      Artist newArtist= new Artist(name);
+      model.put("artists", Artist.all());
+      model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    get("/artist/new", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/artist-form.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/artist/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Artist artist = Artist.find(Integer.parseInt(request.params(":id")));
+      model.put("artist", artist);
+      model.put("template", "templates/artist.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/artist/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Artist artist = Artist.find(Integer.parseInt(request.params(":id")));
+
+      String name = request.queryParams("CD");
+      CD newCD = new CD(name);
+      artist.addCD(newCD);
+      model.put("artist", artist);
+      model.put("template", "templates/artist.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("artist/:id/cd/new", (request, response) -> {
+        Map<String, Object> model = new HashMap<String, Object>();
+        Artist artist = Artist.find(Integer.parseInt(request.params(":id")));
+        model.put("artist", artist);
+        model.put("template", "templates/artist-cd-form.vtl");
+        return new ModelAndView(model, layout);
+      }, new VelocityTemplateEngine());
   }
 }

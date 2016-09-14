@@ -1,9 +1,15 @@
 import java.util.Comparator;
+import java.util.ArrayList;
+
 public class CD {
   private String mName;
+  private static ArrayList<CD> instances = new ArrayList<CD>();
+  private int mID;
 
   public CD(String name) {
     mName = name;
+    instances.add(this);
+    mID = instances.size();
   }
 
   public String getName() {
@@ -20,4 +26,20 @@ public class CD {
         return CdName1.compareToIgnoreCase(CdName2);
       }
     };
+
+  public static ArrayList<CD> all() {
+    return instances;
+  }
+
+  public static void clear() {
+    instances.clear();
+  }
+
+  public int getId() {
+    return mID;
+  }
+
+  public static CD find(int id) {
+    return instances.get(id - 1);
+  }
 }
